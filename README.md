@@ -16,26 +16,26 @@ This is the Python scripts repository for MARC-Flex Dataset.
  - skeleton generator
     - batch_openpose.py
 
-    This script is 
+        This script is 
     - dict.py
 
-    This script is 
+        This script is 
     - merge.py
 
-    This script is 
+        This script is 
     - merge_customdata_asbly.py
 
-    This script is 
+        This script is 
     - merge_customdata_dsbly.py
 
-    This script is 
+        This script is 
  - subdataset generator
     - divider.py
 
-    This script is 
+        This script is 
     - label_gen.py
 
-    This script is 
+        This script is 
     - npy_gen.py
 
-    This script is 
+        This script is 
