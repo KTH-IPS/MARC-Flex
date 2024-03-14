@@ -10,16 +10,13 @@ Download the dataset here: URL TO BE RESEALSED AFTER REVIEW.
 
 ## Pipeline
 The whole pipeline is described as follow. If you want to build a new dataset, or enrich this dataset, it is easy to follow this pipeline.
-1. Record raw videos with single or multiple camers using scripts in **video recorder**. Raw video frames will be generated at the same time.
+1. Record raw videos with single or multiple cameras. Raw video frames will be generated at the same time.
 2. Clip the raw videos into procedural ones using the anchors. Scripts to clip the video are in **video clipper**.
 3. Generate skeleton frames using any skeleton estimator (OpenPose in this dataset), for instance the codes in **skeleton generator**.
 4. Merge the skeleton frames into procedural skeketon data using scripts from **skeleton generator**.
 5. Build the training and testing subdataset using scripts in **subdataset generator**. X-Sample, X-Subject, and X-Sensor can be used for different research target.
 
 ## Folders
- - **video recorder**
-
-    This folder contains scripts to record raw videos using single or multiple cameras at the same time. Raw video frames will also be generated automatically using the scripts in this folder.
  - **video clipper**
 
     This folder contains scripts to clip the raw video into procedural ones. **procedure_anchors.csv** is required here.
@@ -32,6 +29,10 @@ The whole pipeline is described as follow. If you want to build a new dataset, o
     This folder contains scripts dividing the training and testing subsets, and the .npy, .pkl files for network training.
 
 ## How to use
+ - **video clipper**
+    - **clipper.py**
+
+        This script is used for clipping the raw videos into procedural ones, accoring to the manual procedures. **procedure_anchors.csv** is required here.
  - **skeleton generator**
     - **batch_openpose.py**
 
@@ -65,6 +66,9 @@ The whole pipeline is described as follow. If you want to build a new dataset, o
         This script build the .npy and .pkl for data and labels in the training subset and the testing subset. The .npy and the .pkl files are used to train the deep neural networks with PyTorch or TensorFlow.
 
 **Note**: 
+
+The camera recording program used is from https://github.com/xuanma/pyqt5_camera_new. 
+
 Please refer to the notes in all the scripts for details that are not included in README.md.
 
 Please refer to our paper for more details like the naming rules.
