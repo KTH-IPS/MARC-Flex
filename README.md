@@ -7,7 +7,12 @@
 This is the Python scripts repository for MARC-Flex Dataset.
 
 ## Pipeline
-The whole pipeline 
+The whole pipeline is described as follow. If you want to build a new dataset, or enrich this dataset, it is easy to follow this pipeline.
+1. Record raw videos with single or multiple camers using scripts in **video recorder**. Raw video frames will be generated at the same time.
+2. Clip the raw videos into procedural ones using the anchors. Scripts to clip the video are in **video clipper**.
+3. Generate skeleton frames using any skeleton estimator (OpenPose in this dataset), for instance the codes in **skeleton generator**.
+4. Merge the skeleton frames into procedural skeketon data using scripts from **skeleton generator**.
+5. Build the training and testing subdataset using scripts in **subdataset generator**. X-Sample, X-Subject, and X-Sensor can be used for different research target.
 
 ## Folders
  - **video recorder**
