@@ -1,5 +1,5 @@
 # MARC-Flex Dataset
- ![MARC-Flex Dataset](/media/marc-flex_full_logo.png =250x)
+ ![MARC-Flex Dataset](/media/marc-flex_full_logo.png | width=100)
 
 ## Introduction
 This is the Python scripts repository for MARC-Flex Dataset.
