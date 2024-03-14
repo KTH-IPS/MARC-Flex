@@ -2,15 +2,15 @@ import argparse
 import os
 import json
 
-from dict import zhihao_debug
-from dict import HRC_assembly_human_inverse
 from dict import HRC_disassembly_human_inverse
 
-# TODO:labels
-def make_data_dict(openpose_save, node=18, hand=False, fhd=False):
+# This is the template script to merge individial skeleton frames into a procedural one.
+# This script is for the assembly data from both scenarios.
+
+def make_data_dict(openpose_save, node=18, hand=False, normalization=False):
     frame_index = 0
     data = []
-    files = [i for i in os.listdir(openpose_save) if os.path.isfile(openpose_save + i)]  # 如果文件存在
+    files = [i for i in os.listdir(openpose_save) if os.path.isfile(openpose_save + i)]
     files.sort()  # file is a list
     for fname in files:
         f = open(os.path.join(openpose_save, fname))
@@ -30,11 +30,10 @@ def make_data_dict(openpose_save, node=18, hand=False, fhd=False):
             a = people_list[i]["pose_keypoints_2d"]  # 18*3=54 or 25*3
             if node == 18:  # get only the x,y
                 pose_list = [a[j] for j in range(54) if not (j + 1) % 3 == 0]
-                # pose_list[16:18] = []
             elif node == 25:
                 pose_list = [a[j] for j in range(75) if not (j + 1) % 3 == 0]
 
-            if fhd:  # 对FHD尺寸归一化normalization
+            if normalization:  # ormalization with camera resolution 640*480
                 for x in range(len(pose_list)):
                     if x % 2 == 0:
                         pose_list[x] = round(pose_list[x] / 640, 3)
@@ -43,7 +42,6 @@ def make_data_dict(openpose_save, node=18, hand=False, fhd=False):
 
             if node == 18:
                 score_list = [round(a[j], 3) for j in range(54) if (j + 1) % 3 == 0]
-                # del score_list[8]  # ???
             elif node == 25:
                 score_list = [round(a[j], 3) for j in range(75) if (j + 1) % 3 == 0]
             if hand:
@@ -89,67 +87,39 @@ def save_json(final_dict, json_path):
         json.dump(final_dict, f)
 
 
-def merge_single_video(input_path, output_path, node=18, hand=False, fhd=False):
+def merge_single_video(input_path, output_path, node=18, hand=False, normalization=False):
     openpose_file = os.listdir(input_path)
     openpose_file.sort()
-    data_dict = make_data_dict(input_path, node=18, hand=hand, fhd=fhd)
+    data_dict = make_data_dict(input_path, node=18, hand=hand, normalization=normalization)
     for f_name in openpose_file:
-        # split = f_name.split('_')
-        # frame = int(split[1][-3:])
-        # label = split[0]
-        # label_index = zhihao_debug[label]
         file_name = f_name.split(".")[0]
         file_type = f_name.split(".")[-1]
-        # print("file_name",file_name)
-        # print("file_type",file_type)
         split = file_name.split("_")
         label_index = int(split[5][1:]) - 1
-        # print("label_index", label_index)
         label = HRC_disassembly_human_inverse[int(label_index)]
-        # print("label", label)
         frame = int(split[-2][-3:])
     data_dict['label'] = label
     data_dict['label_index'] = label_index
-    # json_name = output_path + label + '.json'
     json_name = output_path + input_path.split('/')[-2] + '.json'  # for multi video with one label
     save_json(data_dict, json_name)
     print(json_name + ' saved')
 
 
-def merge_multiple_video(video_folder, output_path, node=18, hand=False, fhd=False):
+def merge_multiple_video(video_folder, output_path, node=18, hand=False, normalization=False):
     video = os.listdir(video_folder)
-    # print("video", video)
-    # print(video)
     index = 0
     for v in video:
-        # print(v)
-        input_path = video_folder + v + '/'  # 注意'/'不可少
-        # print(input_path)
-        merge_single_video(input_path, output_path, node, hand, fhd)
+        input_path = video_folder + v + '/'
+        merge_single_video(input_path, output_path, node, hand, normalization)
         index += 1
         print("[%d/%d] %s has been merged successfully!" % (index, len(video), v.split('.')[0]))
 
-# parser = argparse.ArgumentParser(description='Merge json files from each movie into single json file.')
-# parser.add_argument('input_path', type=str, help='input path')
-# parser.add_argument('output_path', type=str, help='output path')
-# args = parser.parse_args()
-# input_path = args['input_path']
-# output_path = args['output_path']
-
-# video_folder = '/home/zhihaoliu/ml_data/zhihao_video/debug2_skeleton/'
-# input_path = '/home/zhihaoliu/ml_data/zhihao_video/json/'
-TEST_SKELETON_FOLDER = "/home/zhihaoliu/ml_data/zhihao_video/clips_test_skeleton/"
-SKELETON_FOLDER = "/home/ips-gpu-server/tianyuwang/har-dataset/MARC-Flex/clipped_video/scenario_s/disassembly/video_clips/clips_skeleton/"
-
-# create a new folder for merged json, for merge single video
-# output_path = os.path.dirname(input_path) + '_merged/'
-# if not os.path.exists(output_path):
-#     os.mkdir(output_path)
+SKELETON_FOLDER = "Your Path"
 
 output_folder = os.path.dirname(SKELETON_FOLDER) + '_merged/'
 if not os.path.exists(output_folder):
     os.mkdir(output_folder)
-
-# merge_single_video(input_path, output_path)
-merge_multiple_video(SKELETON_FOLDER, output_folder, fhd=False)
+    
+# use Boolean normalization to switch do normalization or not
+merge_multiple_video(SKELETON_FOLDER, output_folder, normalization=False)
 

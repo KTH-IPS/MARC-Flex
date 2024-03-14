@@ -4,6 +4,7 @@ import json
 
 from dict import debug
 
+# This is the template script to merge individial skeleton frames into a procedural one.
 
 def make_data_dict(openpose_save, node=18, hand=False, fhd=False):
     frame_index = 0
@@ -32,7 +33,7 @@ def make_data_dict(openpose_save, node=18, hand=False, fhd=False):
             elif node == 25:
                 pose_list = [a[j] for j in range(75) if not (j + 1) % 3 == 0]
 
-            if fhd:  # normalization with camera resolution
+            if fhd:  # normalization with camera resolution 1920*1080
                 for x in range(len(pose_list)):
                     if x % 2 == 0:
                         pose_list[x] = round(pose_list[x] / 1920, 3)
@@ -97,7 +98,6 @@ def merge_single_video(input_path, output_path, node=18, hand=False, fhd=False):
         label_index = zhihao_debug[label]
     data_dict['label'] = label
     data_dict['label_index'] = label_index
-    # json_name = output_path + label + '.json'
     json_name = output_path + input_path.split('/')[-2] + '.json'  # for multi video with one label
     save_json(data_dict, json_name)
     print(json_name + ' saved')
@@ -105,25 +105,16 @@ def merge_single_video(input_path, output_path, node=18, hand=False, fhd=False):
 
 def merge_multiple_video(video_folder, output_path, node=18, hand=False, fhd=False):
     video = os.listdir(video_folder)
-    # print(video)
     index = 0
     for v in video:
         print(v)
-        input_path = video_folder + v + '/'  # 注意'/'不可少
-        # print(input_path)
+        input_path = video_folder + v + '/' 
         merge_single_video(input_path, output_path, node, hand, fhd)
         index += 1
         print("[%d/%d] %s has been merged successfully!" % (index, len(video), v.split('.')[0]))
 
-# parser = argparse.ArgumentParser(description='Merge json files from each movie into single json file.')
-# parser.add_argument('input_path', type=str, help='input path')
-# parser.add_argument('output_path', type=str, help='output path')
-# args = parser.parse_args()
-# input_path = args['input_path']
-# output_path = args['output_path']
-
-video_folder = '/home/zhihaoliu/ml_data/zhihao_video/debug2_skeleton/'
-input_path = '/home/zhihaoliu/ml_data/zhihao_video/json/'
+video_folder = 'Your Path'
+input_path = 'Your Path'
 
 # create a new folder for merged json
 output_path = os.path.dirname(input_path) + '_merged/'
@@ -134,6 +125,5 @@ output_folder = os.path.dirname(video_folder) + '_merged/'
 if not os.path.exists(output_folder):
     os.mkdir(output_folder)
 
-# merge_single_video(input_path, output_path)
 merge_multiple_video(video_folder, output_folder)
 
