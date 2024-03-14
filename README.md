@@ -17,10 +17,11 @@ The whole pipeline is described as follow. If you want to build a new dataset, o
 ## Folders
  - **video recorder**
 
-    This folder contains scripts
+    This folder contains scripts to record raw videos using single or multiple cameras at the same time. Raw video frames will also be generated automatically using the scripts in this folder.
  - **video clipper**
 
-    This folder contains scripts
+    This folder contains scripts to clip the raw video into procedural ones. **procedure_anchors.csv** is required here.
+    If you want to use own data, you need to have the **procedure_anchors.csv** by yourself manually. For this dataset, we used Premiere Pro to determime the data in **procedure_anchors.csv**.
  - **skeleton generator**
     
     This folder contains scripts generating skeleton from video and merging the individual skeleton frames into procedural ones.
