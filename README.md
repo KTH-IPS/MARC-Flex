@@ -1,12 +1,12 @@
 # MARC-Flex Dataset
- ![MARC-Flex Dataset](/media/marc-flex_full_logo.png)
+ ![MARC-Flex Dataset](/media/marc-flex_full_logo.png =250x)
 
 ## Introduction
 This is the Python scripts repository for MARC-Flex Dataset.
 
 ## Folders
  - **video clipper**
- 
+
     This folder contains scripts
  - **skeleton generator**
     
