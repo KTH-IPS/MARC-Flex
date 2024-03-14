@@ -4,7 +4,7 @@ import json
 
 from dict import HRC_assembly_human_inverse
 
-# This is the template script to merge individial skeleton frames into a procedural one.
+# This is the script to merge individial skeleton frames into a procedural one.
 # This script is for the assembly data from both scenarios.
 
 def make_data_dict(openpose_save, node=18, hand=False, normalization=False):
@@ -120,6 +120,6 @@ output_folder = os.path.dirname(SKELETON_FOLDER) + '_merged/'
 if not os.path.exists(output_folder):
     os.mkdir(output_folder)
 
-# use Boolean normalization to switch do normalization or not
+# use Boolean normalization to switch to do normalization or not
 merge_multiple_video(SKELETON_FOLDER, output_folder, normalization=False)
 

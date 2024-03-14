@@ -5,6 +5,7 @@
 
 ## Introduction
 This is the Python scripts repository for MARC-Flex Dataset.
+
 Download the dataset here: URL TO BE RESEALSED AFTER REVIEW.
 
 ## Pipeline
@@ -45,17 +46,22 @@ The whole pipeline is described as follow. If you want to build a new dataset, o
         This script is the template script for merge_customdata_asbly.py and merge_customdata_dsbly.py. Please refer to them for more details.
     - **merge_customdata_asbly.py**
 
-        This script is 
+        This script is the script to merge skeleton frames in several folders to procedural skeleton sequence.
+        It needs to be noted that the origanlly generated .json file of skeleton frames only contains skeleton data of single frame. This script is to merge all the skeleton data of one manual procedure into single .json file.
+        This script requires the dictionary from **dict.py**. For assembly and disassembly data, use the dictionary accordingly.
+        As for the nomalization, set the Boolean normalization to True or False. Normalization is not strictly required, because you can conduct it anywhere before building the final training and testing set. But normalization is strongly reconmmended, for better model generalization on different cameras.
     - **merge_customdata_dsbly.py**
 
-        This script is 
+        This script is similiar to **merge_customdata_asbly.py**, but is for disassembly data. Please refer to the note of **merge_customdata_asbly.py**.
  - **subdataset generator**
     - **divider.py**
 
-        This script is 
+        This script is used to divide the complete dataset into training and testing subset. Purposes like X-Sample, X-Subject, and X-Sensor need to be realized here.
     - **label_gen.py**
 
-        This script is 
+        This script is used to generate the label for the training and testing subset.
     - **npy_gen.py**
 
-        This script is 
+        This script build the .npy and .pkl for data and labels in the training subset and the testing subset. The .npy and the .pkl files are used to train the deep neural networks with PyTorch or TensorFlow.
+
+**Note**: Please refer to the notes in all the scripts for details that are not included in README.md.
