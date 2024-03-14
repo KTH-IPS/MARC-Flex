@@ -1,14 +1,16 @@
 # MARC-Flex Dataset
  ![MARC-Flex Dataset](/media/marc-flex_full_logo.png)
- 
+
 ## Introduction
 This is the Python scripts repository for MARC-Flex Dataset.
 
 ## Folders
  - skeleton generator
-    This folder
+    
+    This folder contains scripts generating skeleton from video and merging the individual skeleton frames into procedural ones.
  - subdataset generator
-    This folder
+    
+    This folder contains scripts dividing the training and testing subsets, and the .npy, .pkl files for network training.
 
 ## How to use
 
