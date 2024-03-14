@@ -1,5 +1,7 @@
 # MARC-Flex Dataset
- <img src="/media/marc-flex_full_logo.png" width="500" height="500">
+<p align="center">
+ <img src="/media/marc-flex_full_logo.png" width="350" height="350">
+ </p>
 
 ## Introduction
 This is the Python scripts repository for MARC-Flex Dataset.
