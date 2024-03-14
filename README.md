@@ -64,4 +64,7 @@ The whole pipeline is described as follow. If you want to build a new dataset, o
 
         This script build the .npy and .pkl for data and labels in the training subset and the testing subset. The .npy and the .pkl files are used to train the deep neural networks with PyTorch or TensorFlow.
 
-**Note**: Please refer to the notes in all the scripts for details that are not included in README.md.
+**Note**: 
+Please refer to the notes in all the scripts for details that are not included in README.md.
+
+Please refer to our paper for more details like the naming rules.
