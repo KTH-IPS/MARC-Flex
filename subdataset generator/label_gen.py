@@ -1,14 +1,12 @@
 import argparse
 import os
 import json
-
-# parser = argparse.ArgumentParser(description="Generate a summary file of the json data.")
-# parser.add_argument("input", type=str, help="input path")
-# path = parser.parse_args().input+"/"
 import sys
 
-# skeleton_folder = '/home/zhihaoliu/ml_data/zhihao_video/debug2_skeleton_merged/'
-MERGED_SKELETON_FOLDER = "/home/zhihaoliu/ml_data/hrc_dataset_0522_clipped/assembly/video_clips/XView/train/"
+# This script is used for generating data label to json files given the skeleton data. 
+# Often, the input folder is either the training set or the testing set.
+
+MERGED_SKELETON_FOLDER = "Your Path to the Training Set or the Testing Set"
 summary = {}
 
 for (root, dirs, files) in os.walk(MERGED_SKELETON_FOLDER):
