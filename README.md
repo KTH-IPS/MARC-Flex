@@ -65,6 +65,10 @@ The whole pipeline is described as follow. If you want to build a new dataset, o
 
         This script build the .npy and .pkl for data and labels in the training subset and the testing subset. The .npy and the .pkl files are used to train the deep neural networks with PyTorch or TensorFlow.
 
+    - **skeleton_mmaction.py**
+
+    - **video_mmaction.py**
+
 **Note**: 
 
 The camera recording program used is from https://github.com/xuanma/pyqt5_camera_new. 
