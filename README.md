@@ -67,7 +67,11 @@ The whole pipeline is described as follow. If you want to build a new dataset, o
 
     - **skeleton_mmaction.py**
 
+        This script is about how to build the subdatased of the skeleton data for mmpose training.
+
     - **video_mmaction.py**
+        This script is about how to build the subdatased of the RGB data for mmpose training.
+
 
 **Note**: 
 
