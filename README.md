@@ -82,6 +82,7 @@ Please refer to the notes in all the scripts for details that are not included i
 Please refer to our paper for more details like the naming rules.
 
 
+## License
 Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
 
 This work is licensed under a
