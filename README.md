@@ -4,7 +4,7 @@
  </p>
 
 ## Introduction
-This is the Python scripts repository for MARC-Flex Dataset.
+This is the official repository for MARC-Flex Dataset with Python scripts.
 
 Download the dataset here: URL TO BE RESEALSED AFTER REVIEW.
 
