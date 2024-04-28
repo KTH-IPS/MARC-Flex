@@ -1,5 +1,5 @@
 # MARC-Flex Dataset
-<p align="center">
+<p align="left">
  <img src="/media/marc-flex_full_logo.png" width="350" height="350">
  </p>
 
